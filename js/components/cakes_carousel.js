@@ -40,8 +40,8 @@ class CakeCarousel {
 
   render () {
     const wrapper = document.querySelector(this.parentSelector);
-    this.cakes.forEach(cake => {
-      const cakeCard = new CakeCard(cake.name, cake.description, cake.image);
+    this.cakes.forEach((cake, i) => {
+      const cakeCard = new CakeCard(i, cake.name, cake.description, cake.image);
       wrapper.append(cakeCard.htmlElement());
     });
   }
