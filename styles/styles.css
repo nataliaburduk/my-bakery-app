@@ -20,7 +20,9 @@
 }
 
 .card img{
-  height: 200px;
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
 }
 
 article{
