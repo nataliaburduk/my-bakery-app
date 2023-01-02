@@ -3,6 +3,18 @@
   width:auto;
 }
 
+#glodal-search{
+  margin-left: auto;
+}
+
+input{
+  margin: 0.5rem;
+}
+
+.btn {
+  margin-left: 0.5rem;
+}
+
 .nav-pos{
   position: fixed;
   z-index: 1;
@@ -41,4 +53,22 @@ article{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: max-height 0.7s;
+  max-height: 100px;
 }
+
+
+#mobile-navbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #mobile-navbar {
+    display: block;
+  }
+
+  #descktop-navbar {
+    display: none;
+  }
+}
+
