@@ -7,7 +7,7 @@
   margin-left: auto;
 }
 
-input{
+#glodal-search > input{
   margin: 0.5rem;
 }
 
@@ -46,29 +46,14 @@ article{
 }
 
 .card-text{
-    width: 100%;
+  width: 100%;
 }
 
 .collapsed-text{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: max-height 0.7s;
-  max-height: 100px;
 }
 
 
-#mobile-navbar {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  #mobile-navbar {
-    display: block;
-  }
-
-  #descktop-navbar {
-    display: none;
-  }
-}
 
