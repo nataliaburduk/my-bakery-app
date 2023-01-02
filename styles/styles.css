@@ -1,4 +1,44 @@
-.logo{
-  margin: 7px 0 0 0; 
-  float: left;
+.logo img{
+  height: 50px;
+  width:auto;
+}
+
+.nav-pos{
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  width: 100%;
+}
+
+.main-pos{
+  margin-top: 72px;
+}
+
+.card {
+  margin-bottom: 25px;
+  align-items:center;
+}
+
+.card img{
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+
+article{
+  padding: 3rem;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-text{
+    width: 100%;
+}
+
+.collapsed-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
