@@ -1,7 +1,14 @@
+import {
+  SMALL_SCREEN_WIDTH,
+  MEDIUM_SCREEN_WIDTH,
+  LARGE_SCREEN_WIDTH,
+  EXTRA_LARGE_SCREEN_WIDTH
+} from "../screen_breakpoints";
+
 import CakeCard from "./cake_card";
 
 class CakeCarousel {
-  constructor(parentSelector,screenWidth, ...classes) {
+  constructor(parentSelector, screenWidth, ...classes) {
     this.parentSelector = parentSelector;
     this.classes = classes;
     this.cakes = [{
@@ -42,51 +49,35 @@ class CakeCarousel {
     this.nextBtn = document.querySelector('.next');
     this.prevBtn = document.querySelector('.previous');
     this.wrapper = document.querySelector(this.parentSelector);
-    
   }
 
   render() {
-    this.cakes.slice(this.firstVisibleIndex, this.lastVisibleIndex + 1).forEach((cake, i) => {
+    const cardsToShow = this.cakes.slice(this.firstVisibleIndex, this.lastVisibleIndex + 1);
+    cardsToShow.forEach((cake, i) => {
       const cakeCard = new CakeCard(i, cake.name, cake.description, cake.image, true);
       this.wrapper.append(cakeCard.htmlElement());
     });
+
+    this.showNextSlide();
+    this.showPrevSlide();  
   }
 
   showNextSlide() {
     this.nextBtn.addEventListener('click', () => {
-      if (this.firstVisibleIndex === this.cakes.length - 1) {
-        this.firstVisibleIndex = 0;
-      } else {
-        this.firstVisibleIndex++;
-      }
+      this.incrementIndex(this.firstVisibleIndex);
+      this.incrementIndex(this.lastVisibleIndex);
 
-      if (this.lastVisibleIndex === this.cakes.length - 1) {
-        this.lastVisibleIndex = 0;
-      } else {
-        this.lastVisibleIndex++;
-      }
-
-      this.wrapper.removeChild(this.wrapper.querySelector('div'));
       const cake = this.cakes[this.lastVisibleIndex];
       const cakeCard = new CakeCard(this.lastVisibleIndex, cake.name, cake.description, cake.image, true);
+      this.wrapper.removeChild(this.wrapper.querySelector('div'));
       this.wrapper.append(cakeCard.htmlElement());
-
     });
   }
 
   showPrevSlide() {
     this.prevBtn.addEventListener('click', () => {
-      if (this.firstVisibleIndex === 0) {
-        this.firstVisibleIndex = this.cakes.length - 1;
-      } else {
-        this.firstVisibleIndex--;
-      }
-
-      if (this.lastVisibleIndex === 0) {
-        this.lastVisibleIndex = this.cakes.length - 1;
-      } else {
-        this.lastVisibleIndex--;
-      }
+      this.decrementIndex(this.firstVisibleIndex);
+      this.decrementIndex(this.lastVisibleIndex);
 
       const cake = this.cakes[this.firstVisibleIndex];
       const cakeCard = new CakeCard(this.firstVisibleIndex, cake.name, cake.description, cake.image, true);
@@ -94,13 +85,33 @@ class CakeCarousel {
       this.wrapper.removeChild(this.wrapper.lastChild);
     });
   }
+
+  incrementIndex(index) {
+    if (index === this.cakes.length - 1) {
+      index = 0;
+    } else {
+      index++;
+    }
+  }
+
+  decrementIndex(index) {
+    if (index === 0) {
+      index = this.cakes.length - 1;
+    } else {
+      index--;
+    }
+  }
+
+
   calcLastVisibleIndex() {
-    if (this.screenWidth < 576) {
+    if (this.screenWidth < SMALL_SCREEN_WIDTH) {
       return 0;
-    } else if (this.screenWidth < 768) {
+    } else if (this.screenWidth < MEDIUM_SCREEN_WIDTH) {
       return 1;
-    } else if (this.screenWidth < 992) {
+    } else if (this.screenWidth < LARGE_SCREEN_WIDTH) {
       return 2;
+    } else if (this.screenWidth < EXTRA_LARGE_SCREEN_WIDTH) {
+      return 3;
     } else {
       return 5;
     }
