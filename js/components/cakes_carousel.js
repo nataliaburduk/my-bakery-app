@@ -1,11 +1,10 @@
 import CakeCard from "./cake_card";
 
 class CakeCarousel {
-  constructor (parentSelector, ...classes){
+  constructor(parentSelector, ...classes) {
     this.parentSelector = parentSelector;
     this.classes = classes;
-    this.cakes = [
-      {
+    this.cakes = [{
         name: "Cakes",
         description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
         image: "img/cakes/cake_1.jpg"
@@ -36,50 +35,62 @@ class CakeCarousel {
         image: "img/cakes/cake_6.jpg"
       }
     ];
-    this.visibleAmount = 4;
+
     this.firstVisibleIndex = 0;
-    this.nextBtn = document.querySelector('.next'),
+    this.lastVisibleIndex = 3;
+    this.nextBtn = document.querySelector('.next');
     this.prevBtn = document.querySelector('.previous');
+    this.wrapper = document.querySelector(this.parentSelector);
   }
 
-  render () {
-    const wrapper = document.querySelector(this.parentSelector);
-    while (wrapper.firstChild) {
-      wrapper.removeChild(wrapper.lastChild);
-    }
-    this.cakesToShow().forEach((cake, i) => {
-      const cakeCard = new CakeCard(i, cake.name, cake.description, cake.image, i < this.visibleAmount);
-      wrapper.append(cakeCard.htmlElement());
+  render() {
+    this.cakes.slice(this.firstVisibleIndex, this.lastVisibleIndex + 1).forEach((cake, i) => {
+      const cakeCard = new CakeCard(i, cake.name, cake.description, cake.image, true);
+      this.wrapper.append(cakeCard.htmlElement());
     });
   }
 
-  showNextSlide () {
+  showNextSlide() {
     this.nextBtn.addEventListener('click', () => {
-      if (this.firstVisibleIndex > this.visibleAmount - 1) {
+      if (this.firstVisibleIndex === this.cakes.length - 1) {
         this.firstVisibleIndex = 0;
       } else {
         this.firstVisibleIndex++;
       }
-      this.render();
+
+      if (this.lastVisibleIndex === this.cakes.length - 1) {
+        this.lastVisibleIndex = 0;
+      } else {
+        this.lastVisibleIndex++;
+      }
+
+      this.wrapper.removeChild(this.wrapper.querySelector('div'));
+      const cake = this.cakes[this.lastVisibleIndex];
+      const cakeCard = new CakeCard(this.lastVisibleIndex, cake.name, cake.description, cake.image, true);
+      this.wrapper.append(cakeCard.htmlElement());
+
     });
   }
 
-  showPrevSlide(){
+  showPrevSlide() {
     this.prevBtn.addEventListener('click', () => {
-      if (this.firstVisibleIndex == 0) {
+      if (this.firstVisibleIndex === 0) {
         this.firstVisibleIndex = this.cakes.length - 1;
       } else {
         this.firstVisibleIndex--;
       }
-      this.render();
-    });
-  }
 
-  cakesToShow () {
-    const arr1 = this.cakes.slice(this.firstVisibleIndex, this.firstVisibleIndex + this.visibleAmount);
-    const howMany = this.visibleAmount - arr1.length;
-    const arr2 = this.cakes.slice(0, howMany);
-    return arr1.concat(arr2);
+      if (this.lastVisibleIndex === 0) {
+        this.lastVisibleIndex = this.cakes.length - 1;
+      } else {
+        this.lastVisibleIndex--;
+      }
+
+      const cake = this.cakes[this.firstVisibleIndex];
+      const cakeCard = new CakeCard(this.firstVisibleIndex, cake.name, cake.description, cake.image, true);
+      this.wrapper.insertBefore(cakeCard.htmlElement(), this.wrapper.querySelector('div'));
+      this.wrapper.removeChild(this.wrapper.lastChild);
+    });
   }
 }
 export default CakeCarousel;

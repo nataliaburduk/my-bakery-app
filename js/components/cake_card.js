@@ -11,7 +11,6 @@ class CakeCard {
     const element = document.createElement('div');
     element.style.display = this.display ? 'block' : 'none';
     element.classList.add("col", "col-12", "col-sm-6", "col-md-4", "col-lg-3", "col-xl-2");
-
     element.innerHTML = `
     <div class="carousel-item active">
       <div id="cake-card-${this.id}" class="card">
