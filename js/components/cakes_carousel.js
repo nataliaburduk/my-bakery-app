@@ -1,7 +1,7 @@
 import CakeCard from "./cake_card";
 
 class CakeCarousel {
-  constructor(parentSelector, ...classes) {
+  constructor(parentSelector,screenWidth, ...classes) {
     this.parentSelector = parentSelector;
     this.classes = classes;
     this.cakes = [{
@@ -36,11 +36,13 @@ class CakeCarousel {
       }
     ];
 
+    this.screenWidth = screenWidth;
     this.firstVisibleIndex = 0;
-    this.lastVisibleIndex = 3;
+    this.lastVisibleIndex = this.calcLastVisibleIndex();
     this.nextBtn = document.querySelector('.next');
     this.prevBtn = document.querySelector('.previous');
     this.wrapper = document.querySelector(this.parentSelector);
+    
   }
 
   render() {
@@ -92,5 +94,18 @@ class CakeCarousel {
       this.wrapper.removeChild(this.wrapper.lastChild);
     });
   }
+  calcLastVisibleIndex() {
+    if (this.screenWidth < 576) {
+      return 0;
+    } else if (this.screenWidth < 768) {
+      return 1;
+    } else if (this.screenWidth < 992) {
+      return 2;
+    } else {
+      return 5;
+    }
+  }
 }
+
+
 export default CakeCarousel;
