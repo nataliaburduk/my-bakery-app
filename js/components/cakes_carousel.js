@@ -76,8 +76,8 @@ class CakeCarousel {
 
   showPrevSlide() {
     this.prevBtn.addEventListener('click', () => {
-      this.decrementIndex(this.firstVisibleIndex);
-      this.decrementIndex(this.lastVisibleIndex);
+      this.firstVisibleIndex = this.decrementedIndex(this.firstVisibleIndex);
+      this.lastVisibleIndex = this.decrementedIndex(this.lastVisibleIndex);
 
       const cake = this.cakes[this.firstVisibleIndex];
       const cakeCard = new CakeCard(this.firstVisibleIndex, cake.name, cake.description, cake.image, true);
@@ -86,19 +86,19 @@ class CakeCarousel {
     });
   }
 
-  incrementIndex(index) {
+  incrementedIndex(index) {
     if (index === this.cakes.length - 1) {
-      index = 0;
+      return 0;
     } else {
-      index++;
+      return ++index;
     }
   }
 
-  decrementIndex(index) {
+  decrementedIndex(index) {
     if (index === 0) {
-      index = this.cakes.length - 1;
+      return this.cakes.length - 1;
     } else {
-      index--;
+      return --index;
     }
   }
 
