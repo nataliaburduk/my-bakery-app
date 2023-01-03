@@ -7,7 +7,7 @@ import {
 
 import CakeCard from "./cake_card";
 
-class CakeCarousel {
+class CakeSlider {
   constructor(parentSelector, screenWidth, ...classes) {
     this.parentSelector = parentSelector;
     this.classes = classes;
@@ -64,8 +64,8 @@ class CakeCarousel {
 
   showNextSlide() {
     this.nextBtn.addEventListener('click', () => {
-      this.incrementIndex(this.firstVisibleIndex);
-      this.incrementIndex(this.lastVisibleIndex);
+      this.firstVisibleIndex = this.incrementedIndex(this.firstVisibleIndex);
+      this.lastVisibleIndex = this.incrementedIndex(this.lastVisibleIndex);
 
       const cake = this.cakes[this.lastVisibleIndex];
       const cakeCard = new CakeCard(this.lastVisibleIndex, cake.name, cake.description, cake.image, true);
@@ -119,4 +119,4 @@ class CakeCarousel {
 }
 
 
-export default CakeCarousel;
+export default CakeSlider;
