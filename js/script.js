@@ -1,4 +1,4 @@
-import CakeCarousel from "./components/cakes_carousel"; 
+import CakeSlider from "./components/cakes_slider"; 
 
-const cakeCarousel = new CakeCarousel('#wrapper');
-cakeCarousel.render();
+const cakeSlider = new CakeSlider('#wrapper', window.innerWidth);
+cakeSlider.render();

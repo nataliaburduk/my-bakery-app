@@ -1,17 +1,18 @@
 class CakeCard {
-  constructor(id, name, description, image) {
+  constructor(id, name, description, image, display) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.image = image;
+    this.display = display;
   }
 
   htmlElement() {
     const element = document.createElement('div');
-
+    element.style.display = this.display ? 'block' : 'none';
     element.classList.add("col", "col-12", "col-sm-6", "col-md-4", "col-lg-3", "col-xl-2");
-
     element.innerHTML = `
+    <div class="carousel-item active">
       <div id="cake-card-${this.id}" class="card">
         <img src="${this.image}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -19,6 +20,7 @@ class CakeCard {
           <p class="card-text collapsed-text">${this.description}</p>
         </div>
       </div>
+    </div>
     `;
 
     element.querySelector('.card-body').append(this.readMoreButton());
