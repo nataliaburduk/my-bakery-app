@@ -1,0 +1,24 @@
+.logo img{
+  height: 50px;
+  width:auto;
+}
+
+#glodal-search{
+  margin-left: auto;
+}
+
+#glodal-search > input{
+  margin: 0.5rem;
+}
+
+.btn {
+  margin-left: 0.5rem;
+}
+
+.nav-pos{
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  width: 100%;
+}
+
