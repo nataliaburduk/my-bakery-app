@@ -1,0 +1,52 @@
+{ 
+  "cakes": [
+    {
+      "id": 0,
+      "name": "Cakes",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_1.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Cookies",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_2.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Chocolate",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_3.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Macaroons",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_4.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Panettone",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_5.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Chimney Cakes",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_6.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Healthy sweets",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_7.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Tarts",
+      "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "image": "img/cakes/cake_8.jpg"
+    }
+  ]
+}
