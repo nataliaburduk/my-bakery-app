@@ -1,22 +1,25 @@
 import sliderShow from "./carousel";
 
-function hideWelcomeScreen() {
+function welcomeScreen() {
   const slides = document.querySelectorAll('.slider-imgs'),
         welcomeBtn = document.querySelector('.welcome-btn'),
         welcomeContainer = document.querySelector('.welcome-container'),
         scrollBody = document.querySelector('body'),
-        article = document.querySelectorAll('.just-for-hidding');
+        mainContent = document.querySelector('#main-content');
   
   const timeOutId = sliderShow(slides, 2000);
 
-  welcomeBtn.addEventListener('click', () => {
-    clearTimeout(timeOutId);
+  function showCardsAfterSlides(){
     welcomeContainer.classList.add('hide-welcome');
-    welcomeContainer.scrollTo(0, 0);
-    article.forEach(item => item.classList.remove('just-for-hidding'));
     scrollBody.setAttribute('scroll', 'yes');
     scrollBody.style.overflow = 'visible';
+    mainContent.classList.remove('just-for-hidding');
+  }
+
+  welcomeBtn.addEventListener('click', () => {
+    clearTimeout(timeOutId);
+    showCardsAfterSlides();
   });
 }
 
-export default hideWelcomeScreen;
+export default welcomeScreen;
