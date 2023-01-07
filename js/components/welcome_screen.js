@@ -1,6 +1,6 @@
 import sliderShow from "./carousel";
 
-function welcomeScreen() {
+function welcomeScreen(callback) {
   const slides = document.querySelectorAll('.slider-imgs'),
         welcomeBtn = document.querySelector('.welcome-btn'),
         welcomeContainer = document.querySelector('.welcome-container'),
@@ -19,6 +19,7 @@ function welcomeScreen() {
   welcomeBtn.addEventListener('click', () => {
     clearTimeout(timeOutId);
     showCardsAfterSlides();
+    callback();
   });
 }
 
