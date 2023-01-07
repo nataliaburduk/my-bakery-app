@@ -1,20 +1,22 @@
-.welcome-container {
+.welcome-container .slider-imgs > img{
   position: fixed;
   top: 0;
   height: 100vh;
   width: -webkit-fill-available;
   z-index: 2;
-  background-image: url('../img/bg.jpg'); 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  display: flex;
+  overflow: hidden;
+  object-fit: cover;
 }
 
-.welcome-container img {
-  top: 0;
+.slider-imgs {
   left: 0;
-  object-fit: cover;
+  top: 0;
+  transition: transform .5s, opacity .5s, z-index .5s;
 }
 
 .welcome-btn {
@@ -24,13 +26,15 @@
   position: absolute;
   bottom: 50px;
   left: calc(100% / 2 - 35px);
-  background: none;
   color: white;
-  border: none;
   cursor: pointer;
 }
 
 .hide-welcome {
   opacity: 0;
-  transition: opacity 3s;
+  transition: opacity 0.5s;
+}
+
+.just-for-hidding{
+  display: none;
 }
