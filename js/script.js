@@ -5,7 +5,14 @@ import ModalWindow from "./components/modal";
 hideWelcomeScreen(() => {
   const cakeSlider = new CakeSlider('#wrapper', window.innerWidth);
   cakeSlider.render();
-});
 
-const cakeModal = new ModalWindow('.modal');
-cakeModal.modalWindow();
+  const cakeCalculator = document.querySelector('.btn-cake-calc');
+  const cakeModal = new ModalWindow(
+    '#cake-calculator-modal-container',
+    'Create a Cake!',
+    'Describe your own cake and we will create it for you!',
+    cakeCalculator
+  );
+  cakeModal.render();
+
+});
