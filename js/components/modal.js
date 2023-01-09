@@ -1,46 +1,54 @@
-function modalWindow() {
-  const cakeCalculator = document.querySelector('.btn-cake-calc'),
-    modal = document.querySelector('.modal'),
-    closeModalIcon = document.querySelector('.btn-close');
+class ModalWindow {
+  constructor(id, modalTitle, modalSubtitle) {
+    this.id = id;
+    this.modalTitle = modalTitle;
+    this.modalSubtitle = modalSubtitle;
+    this.cakeCalculator = document.querySelector('.btn-cake-calc');
+    this.modal = document.querySelector('.modal');
+    this.closeModalIcon = document.querySelector('.btn-close');
+  }
 
+  modalWindow() {        
+    this.openModalWindow();
+    this.closeModalByCross();
+    this.closeModalWindow();
+  }
 
-  function openModalWindow() {
-    cakeCalculator.addEventListener('click', () => {
-      modal.classList.add('show');
-      modal.classList.remove('hide');
+  openModalWindow() {
+    this.cakeCalculator.addEventListener('click', () => {
+      this.modal.classList.add('show');
+      this.modal.classList.remove('hide');
       document.body.style.overflow = "hidden";
-      document.addEventListener("keydown", escapeClose);
-      modal.addEventListener("click", outsideClose);
+      document.addEventListener("keydown", this.escapeClose.bind(this));
+      this.modal.addEventListener("click", this.outsideClose.bind(this));
     });
   }
-
-  function closeModalByCross() {
-    closeModalIcon.addEventListener('click', () => {
-      closeModalWindow();
-    });
-  }
-
-  function closeModalWindow() {
-    modal.classList.add('hide');
-    modal.classList.remove('show');
+  
+  closeModalWindow() {
+    this.modal.classList.add('hide');
+    this.modal.classList.remove('show');
     document.body.style.overflow = "auto";
-    document.removeEventListener("keydown", escapeClose);
-    modal.removeEventListener("click", outsideClose);
+    document.removeEventListener("keydown", this.escapeClose.bind(this));
+    this.modal.removeEventListener("click", this.outsideClose.bind(this));
   }
 
-  function escapeClose(event) {
+  closeModalByCross() {
+    this.closeModalIcon.addEventListener('click', () => {
+      this.closeModalWindow();
+    });
+  }
+
+  escapeClose(event) {
     if (event.code === 'Escape') {
-      closeModalWindow();
+      this.closeModalWindow();
     }
   }
 
-  function outsideClose(event) {
-    if (event.target === modal || event.target.classList.contains('btn-close')) {
-      closeModalWindow();
+  outsideClose(event) {
+    if (event.target === this.modal || event.target.classList.contains('btn-close')) {
+      this.closeModalWindow();
     }
   }
-  closeModalByCross();
-  openModalWindow();
 }
 
-export default modalWindow;
+export default ModalWindow;
