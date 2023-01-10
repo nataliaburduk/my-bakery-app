@@ -4,8 +4,6 @@ class ModalWindow {
     this.modalTitle = modalTitle;
     this.modalSubtitle = modalSubtitle;
     this.openModalBtn = openModalBtn;
-    // this.modal = document.querySelector('.modal');
-    // this.closeModalIcon = document.querySelector('.btn-close');
   }
 
   render() {
@@ -33,7 +31,7 @@ class ModalWindow {
     `;
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
     this.container.append(this.modal);
-    this.openModalWindow();
+    this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
   }
@@ -49,13 +47,13 @@ class ModalWindow {
     return icon;
   }
 
-  openModalWindow() {
+  openModalWindowTrigger() {
     this.openModalBtn.addEventListener('click', () => {
       this.modal.classList.add('show');
       this.modal.classList.remove('hide');
       document.body.style.overflow = "hidden";
-      document.addEventListener("keydown", this.escapeClose.bind(this));
-      this.modal.addEventListener("click", this.outsideClose.bind(this));
+      document.addEventListener("keydown", this.closeModalByClickingEscape.bind(this));
+      this.modal.addEventListener("click", this.closeModalByClickingOutside.bind(this));
     });
   }
   
@@ -63,8 +61,8 @@ class ModalWindow {
     this.modal.classList.add('hide');
     this.modal.classList.remove('show');
     document.body.style.overflow = "auto";
-    document.removeEventListener("keydown", this.escapeClose.bind(this));
-    this.modal.removeEventListener("click", this.outsideClose.bind(this));
+    document.removeEventListener("keydown", this.closeModalByClickingEscape.bind(this));
+    this.modal.removeEventListener("click", this.closeModalByClickingOutside.bind(this));
   }
 
   closeModalByCross() {
@@ -73,13 +71,13 @@ class ModalWindow {
     });
   }
 
-  escapeClose(event) {
+  closeModalByClickingEscape(event) {
     if (event.code === 'Escape') {
       this.closeModalWindow();
     }
   }
 
-  outsideClose(event) {
+  closeModalByClickingOutside(event) {
     if (event.target === this.modal || event.target.classList.contains('btn-close')) {
       this.closeModalWindow();
     }
