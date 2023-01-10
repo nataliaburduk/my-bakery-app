@@ -14,5 +14,5 @@ hideWelcomeScreen(() => {
     cakeCalculator
   );
   cakeModal.render();
-
 });
+

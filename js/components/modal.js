@@ -1,3 +1,4 @@
+import FormConstructor from "./form_constructor";
 class ModalWindow {
   constructor(containerId, modalTitle, modalSubtitle, openModalBtn) {
     this.container = document.querySelector(containerId);
@@ -29,8 +30,14 @@ class ModalWindow {
           </div>
       </div>
     `;
-    this.modal.querySelector('.modal-header').append(this.closeModalIcon);
+    const first = new FormConstructor('.modal.body', 'Select Cake Sponge', [
+        { name: 'Vanilla', id: 1 },
+        { name: 'Chocolate', id: 2 },
+        { name: 'Meringue', id: 3 }
+      ]);
     this.container.append(this.modal);
+    this.modal.querySelector('.modal-header').append(this.closeModalIcon);
+    this.modal.querySelector('.modal-body').append(first.renderForm());
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
@@ -56,7 +63,7 @@ class ModalWindow {
       this.modal.addEventListener("click", this.closeModalByClickingOutside.bind(this));
     });
   }
-  
+
   closeModalWindow() {
     this.modal.classList.add('hide');
     this.modal.classList.remove('show');
