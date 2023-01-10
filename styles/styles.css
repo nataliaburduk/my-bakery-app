@@ -4,6 +4,7 @@
 @import url('article.css');
 @import url('welcome_screen.css');
 @import url('modal.css');
+@import url('form_constructor.css');
 
 body {
   font-family: 'Dosis';
