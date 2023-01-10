@@ -30,14 +30,26 @@ class ModalWindow {
           </div>
       </div>
     `;
-    const first = new FormConstructor('.modal.body', 'Select Cake Sponge', [
+    const cakeConstructor = new FormConstructor('.modal.body', [
         { name: 'Vanilla', id: 1 },
         { name: 'Chocolate', id: 2 },
         { name: 'Meringue', id: 3 }
+      ],
+      [
+        { name: 'Vanilla', id: 1 },
+        { name: 'Chocolate', id: 2 },
+        { name: 'Caramel', id: 3 }
+      ],
+      [
+        { name: 'Berry', id: 1 },
+        { name: 'Nuts', id: 2 },
+        { name: 'Caramel', id: 3 }
       ]);
+
     this.container.append(this.modal);
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
-    this.modal.querySelector('.modal-body').append(first.renderForm());
+    this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
+
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
