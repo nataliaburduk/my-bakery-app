@@ -31,19 +31,19 @@ class ModalWindow {
       </div>
     `;
     const cakeConstructor = new FormConstructor('.modal.body', [
-        { name: 'Vanilla', id: 1 },
-        { name: 'Chocolate', id: 2 },
+        { name: 'Vanilla Sponge', id: 1 },
+        { name: 'Chocolate Spronge', id: 2 },
         { name: 'Meringue', id: 3 }
       ],
       [
-        { name: 'Vanilla', id: 1 },
-        { name: 'Chocolate', id: 2 },
-        { name: 'Caramel', id: 3 }
+        { name: 'Vanilla Cream', id: 1 },
+        { name: 'Chocolate Cream', id: 2 },
+        { name: 'Caramel Cream', id: 3 }
       ],
       [
-        { name: 'Berry', id: 1 },
-        { name: 'Nuts', id: 2 },
-        { name: 'Caramel', id: 3 }
+        { name: 'Berry Jam', id: 1 },
+        { name: 'Caramel & Nuts', id: 2 },
+        { name: 'Chocolate Ganache', id: 3 }
       ]);
 
     this.container.append(this.modal);

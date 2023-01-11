@@ -14,15 +14,8 @@
   outline: none;
 }
 
-.plus-icon {
-  color: #007bff;
-  font-weight: 100;
-  display: flex;
-  border: none;
-  background: transparent;
-  /* margin: 0em 19em; */
+
+.group-pos {
+  max-width: -webkit-fill-available;
 }
 
-.hidden {
-  overflow: hidden;
-}

@@ -5,49 +5,62 @@ class FormConstructor{
     this.cakeCreams = cakeCreams;
     this.cakeFillings = cakeFillings;
   }
+
+  createButtonsGroup() {
+    
+  }
   
   renderForm() {
-    this.formElement = document.createElement('form');  
-
+    this.formElement = document.createElement('form'); 
+    
+    const buttonsGroup = document.createElement('div');
+    buttonsGroup.setAttribute('class', 'btn-group group-pos');
+    buttonsGroup.setAttribute('role', 'group');
+    buttonsGroup.setAttribute('aris-label', 'Basic outlined example');
+    
     const plusSpongeElement = document.createElement('button'),
           plusCreamElement = document.createElement('button'),
           plusFillingElement = document.createElement('button');
-          
-    this.addPlussIcon(plusSpongeElement);
-    this.addPlussIcon(plusCreamElement);
-    this.addPlussIcon(plusFillingElement);
+    
+    this.addIconForSponge = this.addPlussIcon(plusSpongeElement);
+    this.addIconForCream = this.addPlussIcon(plusCreamElement);
+    this.addIconForFilling = this.addPlussIcon(plusFillingElement);
 
-    this.sponge = this.addPlussIcon(plusSpongeElement);
-    this.cream = this.addPlussIcon(plusCreamElement);
-    this.filling = this.addPlussIcon(plusFillingElement);
+    buttonsGroup.append(this.addIconForSponge);
+    buttonsGroup.append(this.addIconForCream);
+    buttonsGroup.append(this.addIconForFilling);
 
-    this.formElement.append(this.sponge);
-    this.formElement.append(this.cream);
-    this.formElement.append(this.filling);
+    this.addPlussIcon(plusSpongeElement, '+Add Sponge');
+    this.addPlussIcon(plusCreamElement, '+Add Cream');
+    this.addPlussIcon(plusFillingElement, '+Add Filling');
+
+    this.formElement.append(buttonsGroup);
     this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
     this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
     this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
     
     
-    this.sponge.addEventListener('click', () => {
+    this.addIconForSponge.addEventListener('click', (e) => {
+      e.preventDefault();
       this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
     });
 
-    this.cream.addEventListener('click', () => {
+    this.addIconForCream.addEventListener('click', (e) => {
+      e.preventDefault();
       this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
     });
 
-    this.filling.addEventListener('click', () => {
+    this.addIconForFilling.addEventListener('click', (e) => {
+      e.preventDefault();
       this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
     });
 
     return this.formElement;
   }
   
-  addPlussIcon (layer) {
-    layer.setAttribute('type', 'button');
-    layer.setAttribute('class', 'plus-icon');
-    layer.innerHTML = `<i class="fa fa-plus"></i>`;
+  addPlussIcon (layer, layerElement) {
+    layer.setAttribute('class', 'btn btn-outline-primary');
+    layer.innerHTML = `${layerElement}`;
 
     return layer;
   }
@@ -70,6 +83,7 @@ class FormConstructor{
     });
     return fieldSelectElement;
   }
+
 }
 
 export default FormConstructor;

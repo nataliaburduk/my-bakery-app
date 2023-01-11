@@ -25,7 +25,7 @@
  -->
 
 ## Technologies Used
-- Tech 1 - version 1.0
+- bootstrap - version 5.0
 - Tech 2 - version 2.0
 - Tech 3 - version 3.0
 
@@ -35,6 +35,7 @@ List the ready features here:
 - Welcome screen carousel
 - Cards slider
 - Modal Window
+- Cake Constructor
 
 
 ## Screenshots
@@ -71,5 +72,4 @@ Room for improvement:
 - Pay attention to the naming of your methods and functions
 
 To do:
-- Add a form (cake-constructor) to modal window 
-- Dinamically add field to cake-constructor
+- 
