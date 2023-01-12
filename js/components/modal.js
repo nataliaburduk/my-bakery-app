@@ -53,11 +53,23 @@ class ModalWindow {
       .then(data =>  data.json())
       .then(fillings => myFillings = fillings)
       .then(() => {
-        const cakeConstructor = new FormConstructor('.modal.body', mySponges, myCreams, myFillings);
+        const cakeConstructor = new FormConstructor('.modal-body', mySponges, myCreams, myFillings);
         this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
       })
-      .catch(_error => console.log('error'));
-
+      .catch(error => {this.addLoadingSpinner(); console.log('error!')});
+      
+    }
+    
+  addLoadingSpinner() {
+    const loading = document.createElement('div');
+    loading.innerHTML = `
+    <img src="./img/spinner.svg" alt="spinner">
+    `
+    loading.style.cssText = `
+    display: flex;
+    justify-content: center
+    `;
+    return this.modal.querySelector('.modal-body').append(loading);
   }
 
   closeModalIconElement() {
