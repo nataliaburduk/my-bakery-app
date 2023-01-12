@@ -10,6 +10,37 @@ class FormConstructor{
   renderForm() {
     this.formElement = document.createElement('form'); 
 
+    this.createBtnsGroup();
+
+    this.formElement.append(this.btnsGroup);
+    this.appendSpongeToForm();
+    this.appendCreamToForm();
+    this.appendFillingToForm();
+    
+    return this.formElement;
+  }
+
+  appendSpongeToForm() {
+    this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
+  }
+
+  appendCreamToForm() {
+    this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
+  }
+
+  appendFillingToForm() {
+    this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
+  }
+
+  getButton(label) {
+    const btn =  document.createElement('button');
+    btn.setAttribute('class', 'btn btn-outline-primary');
+    btn.innerHTML = `${label}`;
+
+    return btn;
+  }
+
+  createBtnsGroup() {
     this.btnsGroup = this.getBtnsGroup();
     
     this.plusSpongeElement = this.getButton('+Add Sponge');
@@ -20,36 +51,20 @@ class FormConstructor{
     this.btnsGroup.append(this.plusCreamElement);
     this.btnsGroup.append(this.plusFillingElement);
 
-    this.formElement.append(this.btnsGroup);
-    this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
-    this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
-    this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
-    
-    
     this.plusSpongeElement.addEventListener('click', (e) => {
       e.preventDefault();
-      this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
+      this.appendSpongeToForm();
     });
 
     this.plusCreamElement.addEventListener('click', (e) => {
       e.preventDefault();
-      this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
+      this.appendCreamToForm();
     });
 
     this.plusFillingElement.addEventListener('click', (e) => {
       e.preventDefault();
-      this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
+      this.appendFillingToForm();
     });
-
-    return this.formElement;
-  }
-
-  getButton(label) {
-    const btn =  document.createElement('button');
-    btn.setAttribute('class', 'btn btn-outline-primary');
-    btn.innerHTML = `${label}`;
-
-    return btn;
   }
 
   getLayerSelector(options, title) {
