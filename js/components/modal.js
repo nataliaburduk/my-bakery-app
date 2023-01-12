@@ -36,23 +36,28 @@ class ModalWindow {
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
+    this.getFetchedCakeParts();
 
+  }
+  
+  getFetchedCakeParts() {
     let mySponges, myCreams, myFillings;
-
+  
     fetch('http://localhost:3000/cake-sponges')
       .then(data =>  data.json())
-      .then(sp => mySponges = sp)
+      .then(sponges => mySponges = sponges)
       .then(() => fetch('http://localhost:3000/cake-creams'))
       .then(data =>  data.json())
-      .then(cr => myCreams = cr)
+      .then(creams => myCreams = creams)
       .then(() => fetch('http://localhost:3000/cake-fillings'))
       .then(data =>  data.json())
-      .then(fill => myFillings = fill)
+      .then(fillings => myFillings = fillings)
       .then(() => {
         const cakeConstructor = new FormConstructor('.modal.body', mySponges, myCreams, myFillings);
         this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
       })
       .catch(_error => console.log('error'));
+
   }
 
   closeModalIconElement() {
