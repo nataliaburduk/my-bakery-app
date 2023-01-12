@@ -6,8 +6,10 @@ class FormConstructor{
     this.cakeFillings = cakeFillings;
   }
 
+  
 
-  renderForm() {
+  renderForm() { 
+
     this.formElement = document.createElement('form'); 
 
     this.createBtnsGroup();
@@ -16,7 +18,7 @@ class FormConstructor{
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
-    
+  
     return this.formElement;
   }
 

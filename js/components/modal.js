@@ -30,29 +30,29 @@ class ModalWindow {
           </div>
       </div>
     `;
-    const cakeConstructor = new FormConstructor('.modal.body', [
-        { name: 'Vanilla Sponge', id: 1 },
-        { name: 'Chocolate Spronge', id: 2 },
-        { name: 'Meringue', id: 3 }
-      ],
-      [
-        { name: 'Vanilla Cream', id: 1 },
-        { name: 'Chocolate Cream', id: 2 },
-        { name: 'Caramel Cream', id: 3 }
-      ],
-      [
-        { name: 'Berry Jam', id: 1 },
-        { name: 'Caramel & Nuts', id: 2 },
-        { name: 'Chocolate Ganache', id: 3 }
-      ]);
 
     this.container.append(this.modal);
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
-    this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
-
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
+
+    let mySponges, myCreams, myFillings;
+
+    fetch('http://localhost:3000/cake-sponges')
+      .then(data =>  data.json())
+      .then(sp => mySponges = sp)
+      .then(() => fetch('http://localhost:3000/cake-creams'))
+      .then(data =>  data.json())
+      .then(cr => myCreams = cr)
+      .then(() => fetch('http://localhost:3000/cake-fillings'))
+      .then(data =>  data.json())
+      .then(fill => myFillings = fill)
+      .then(() => {
+        const cakeConstructor = new FormConstructor('.modal.body', mySponges, myCreams, myFillings);
+        this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
+      })
+      .catch(_error => console.log('error'));
   }
 
   closeModalIconElement() {
