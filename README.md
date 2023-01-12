@@ -22,12 +22,10 @@
 - What is the purpose of your project?
 - Why did you undertake it?
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
- -->
 
 ## Technologies Used
 - bootstrap - version 5.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+
 
 
 ## Features
