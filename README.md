@@ -22,12 +22,10 @@
 - What is the purpose of your project?
 - Why did you undertake it?
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
- -->
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- bootstrap - version 5.0
+
 
 
 ## Features
@@ -35,6 +33,7 @@ List the ready features here:
 - Welcome screen carousel
 - Cards slider
 - Modal Window
+- Cake Constructor
 
 
 ## Screenshots
@@ -71,5 +70,4 @@ Room for improvement:
 - Pay attention to the naming of your methods and functions
 
 To do:
-- Add a form (cake-constructor) to modal window 
-- Dinamically add field to cake-constructor
+- 
