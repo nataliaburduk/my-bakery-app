@@ -42,6 +42,11 @@
   cursor: pointer;
 }
 
+.modal-header {
+  align-items: center;
+  justify-content: center;
+}
+
 .modal__title {
   text-align: center;
   font-size: 22px;
@@ -51,6 +56,8 @@
 .modal__subtitle {
 text-align: center;
 font-size: 16px;
+font-weight: 500;
+margin-bottom: 0.5rem;
 }
 
 .modal .btn {
