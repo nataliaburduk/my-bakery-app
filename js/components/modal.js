@@ -36,13 +36,14 @@ class ModalWindow {
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
+    this.addLoadingSpinner();
     this.getFetchedCakeParts();
 
   }
-  
+
   getFetchedCakeParts() {
     let mySponges, myCreams, myFillings;
-  
+
     fetch('http://localhost:3000/cake-sponges')
       .then(data =>  data.json())
       .then(sponges => mySponges = sponges)
@@ -54,21 +55,20 @@ class ModalWindow {
       .then(fillings => myFillings = fillings)
       .then(() => {
         const cakeConstructor = new FormConstructor('.modal-body', mySponges, myCreams, myFillings);
+        this.modal.querySelector('.modal-body .modal-spinner').remove();
         this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
       })
-      .catch(error => {this.addLoadingSpinner(); console.log('error!')});
-      
-    }
+      .catch(error => { console.log(error) });
+  }
     
   addLoadingSpinner() {
     const loading = document.createElement('div');
+    loading.setAttribute('class', 'modal-spinner d-flex justify-content-center');
     loading.innerHTML = `
-    <img src="./img/spinner.svg" alt="spinner">
-    `
-    loading.style.cssText = `
-    display: flex;
-    justify-content: center
-    `;
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden"></span>
+    </div>
+    `    
     return this.modal.querySelector('.modal-body').append(loading);
   }
 
