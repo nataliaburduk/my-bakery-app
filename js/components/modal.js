@@ -30,29 +30,46 @@ class ModalWindow {
           </div>
       </div>
     `;
-    const cakeConstructor = new FormConstructor('.modal.body', [
-        { name: 'Vanilla Sponge', id: 1 },
-        { name: 'Chocolate Spronge', id: 2 },
-        { name: 'Meringue', id: 3 }
-      ],
-      [
-        { name: 'Vanilla Cream', id: 1 },
-        { name: 'Chocolate Cream', id: 2 },
-        { name: 'Caramel Cream', id: 3 }
-      ],
-      [
-        { name: 'Berry Jam', id: 1 },
-        { name: 'Caramel & Nuts', id: 2 },
-        { name: 'Chocolate Ganache', id: 3 }
-      ]);
 
     this.container.append(this.modal);
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
-    this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
-
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
+    this.addLoadingSpinner();
+    this.getFetchedCakeParts();
+
+  }
+
+  getFetchedCakeParts() {
+    let mySponges, myCreams, myFillings;
+
+    fetch('http://localhost:3000/cake-sponges')
+      .then(data =>  data.json())
+      .then(sponges => mySponges = sponges)
+      .then(() => fetch('http://localhost:3000/cake-creams'))
+      .then(data =>  data.json())
+      .then(creams => myCreams = creams)
+      .then(() => fetch('http://localhost:3000/cake-fillings'))
+      .then(data =>  data.json())
+      .then(fillings => myFillings = fillings)
+      .then(() => {
+        const cakeConstructor = new FormConstructor('.modal-body', mySponges, myCreams, myFillings);
+        this.modal.querySelector('.modal-body .modal-spinner').remove();
+        this.modal.querySelector('.modal-body').append(cakeConstructor.renderForm());
+      })
+      .catch(error => { console.log(error) });
+  }
+    
+  addLoadingSpinner() {
+    const loading = document.createElement('div');
+    loading.setAttribute('class', 'modal-spinner d-flex justify-content-center');
+    loading.innerHTML = `
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden"></span>
+    </div>
+    `    
+    return this.modal.querySelector('.modal-body').append(loading);
   }
 
   closeModalIconElement() {

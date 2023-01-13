@@ -48,5 +48,47 @@
       "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
       "image": "img/cakes/cake_8.jpg"
     }
+  ],
+  "cake-sponges": [
+    {
+      "name": "Vanilla Sponge", 
+      "id": 1 
+    },
+    {
+      "name": "Chocolate Spronge", 
+      "id": 2 
+    },
+    { 
+      "name": "Meringue", 
+      "id": 3 
+    }
+  ],
+  "cake-creams": [
+    { 
+      "name": "Vanilla Cream", 
+      "id": 1 
+    },
+    { 
+      "name": "Chocolate Cream", 
+      "id": 2 
+    },
+    { 
+      "name": "Caramel Cream", 
+      "id": 3 
+    }
+  ],
+  "cake-fillings": [
+    { 
+      "name": "Berry Jam", 
+      "id": 1 
+    },
+    { 
+      "name": "Caramel & Nuts", 
+      "id": 2 
+    },
+    { 
+      "name": "Chocolate Ganache", 
+      "id": 3 
+    }
   ]
 }
