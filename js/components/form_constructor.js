@@ -18,6 +18,7 @@ class FormConstructor{
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
+   
   
     return this.formElement;
   }
@@ -85,8 +86,39 @@ class FormConstructor{
 
       fieldSelectElement.append(optionTag);
     });
-    return fieldSelectElement;
+
+    const crossField = document.createElement('button');
+    crossField.classList.add('hide-cross-field');
+    crossField.setAttribute('type', 'button');
+    crossField.setAttribute('aria-label', 'Close');
+    crossField.innerHTML = '<i class="fa fa-times"></i>';
+
+    const fieldWrapper = document.createElement('div');
+    fieldWrapper.setAttribute('class', 'field-wrapper');
+    fieldWrapper.append(fieldSelectElement);
+    fieldWrapper.append(crossField);
+
+    fieldSelectElement.addEventListener('mouseover', ()=> {
+      crossField.classList.add('field-close');
+      crossField.classList.remove('hide-cross-field');
+      
+    });
+
+    fieldSelectElement.addEventListener('mouseout', () => {
+      crossField.classList.remove('field-close');
+      crossField.classList.add('hide-cross-field');
+      
+    })
+    
+    crossField.addEventListener('click', () => {
+      fieldSelectElement.style.display = 'none';
+    });
+    return fieldWrapper;
+
+
   }
+
+ 
 
   getBtnsGroup() {
     const buttonsGroup = document.createElement('div');
