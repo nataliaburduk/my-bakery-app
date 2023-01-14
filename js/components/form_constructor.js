@@ -80,7 +80,7 @@ class FormConstructor {
     options.forEach((option) => {
       const optionTag = document.createElement('option');
       optionTag.innerHTML = option.name;
-      optionTag.setAttribute('value', option.id);
+      optionTag.setAttribute('value', +option.price);
       optionTag.setAttribute('class', 'form-select');
 
       fieldSelectElement.append(optionTag);

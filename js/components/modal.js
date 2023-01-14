@@ -23,22 +23,41 @@ class ModalWindow {
                 <div class="modal__subtitle">${this.modalSubtitle}</div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-primary">Give me a Call </button>
-
-            </div>
+              <button type="button" class="btn btn-outline-warning calc-total-price">Calculate Cake's Price</button>
+              <div class="total-price"></div>
                   
           </div>
       </div>
     `;
 
+    
     this.container.append(this.modal);
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
+    // this.modal.querySelector('.total-price').innerHTML = this.result;
+
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();
     this.addLoadingSpinner();
     this.getFetchedCakeParts();
+    this.getTotalCakePrice();
 
+  }
+
+  getTotalCakePrice() {
+    const totalPriceBtn = document.querySelector('.calc-total-price');
+
+    totalPriceBtn.addEventListener('click', () => {
+      let result = 0;
+      const allSelectFields = document.querySelectorAll('select');
+      allSelectFields.forEach(field => {
+        result += +field.value;
+
+        return result;
+      })
+      document.querySelector('.total-price').innerHTML = result;
+  
+    });
   }
 
   getFetchedCakeParts() {
