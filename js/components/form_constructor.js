@@ -1,4 +1,4 @@
-class FormConstructor{
+class FormConstructor {
   constructor(containerId, cakeSponges, cakeCreams, cakeFillings) {
     this.containerId = containerId;
     this.cakeSponges = cakeSponges;
@@ -6,11 +6,11 @@ class FormConstructor{
     this.cakeFillings = cakeFillings;
   }
 
-  
 
-  renderForm() { 
 
-    this.formElement = document.createElement('form'); 
+  renderForm() {
+
+    this.formElement = document.createElement('form');
 
     this.createBtnsGroup();
 
@@ -18,8 +18,7 @@ class FormConstructor{
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
-   
-  
+
     return this.formElement;
   }
 
@@ -36,7 +35,7 @@ class FormConstructor{
   }
 
   getButton(label) {
-    const btn =  document.createElement('button');
+    const btn = document.createElement('button');
     btn.setAttribute('class', 'btn btn-outline-primary');
     btn.innerHTML = `${label}`;
 
@@ -45,7 +44,7 @@ class FormConstructor{
 
   createBtnsGroup() {
     this.btnsGroup = this.getBtnsGroup();
-    
+
     this.plusSpongeElement = this.getButton('+Add Sponge');
     this.plusCreamElement = this.getButton('+Add Cream');
     this.plusFillingElement = this.getButton('+Add Filling');
@@ -87,45 +86,53 @@ class FormConstructor{
       fieldSelectElement.append(optionTag);
     });
 
+
+    const fieldWrapper = this.getFieldWrapper();
+    const crossField = this.getCrossFieldBtn(fieldSelectElement);
+
+    fieldWrapper.append(fieldSelectElement);
+    fieldWrapper.append(crossField);
+
+    return fieldWrapper;
+  }
+
+  getFieldWrapper() {
+    const fieldWrapper = document.createElement('div');
+    fieldWrapper.setAttribute('class', 'field-wrapper');
+
+    return fieldWrapper;
+  }
+
+  getCrossFieldBtn(selector) {
     const crossField = document.createElement('button');
     crossField.classList.add('hide-cross-field');
     crossField.setAttribute('type', 'button');
     crossField.setAttribute('aria-label', 'Close');
     crossField.innerHTML = '<i class="fa fa-times"></i>';
 
-    const fieldWrapper = document.createElement('div');
-    fieldWrapper.setAttribute('class', 'field-wrapper');
-    fieldWrapper.append(fieldSelectElement);
-    fieldWrapper.append(crossField);
-
-    fieldSelectElement.addEventListener('mouseover', ()=> {
+    selector.addEventListener('mouseover', () => {
       crossField.classList.add('field-close');
       crossField.classList.remove('hide-cross-field');
-      
     });
 
-    fieldSelectElement.addEventListener('mouseout', () => {
+    selector.addEventListener('mouseout', () => {
       crossField.classList.remove('field-close');
       crossField.classList.add('hide-cross-field');
-      
     })
-    
+
     crossField.addEventListener('click', () => {
-      fieldSelectElement.style.display = 'none';
+      selector.style.display = 'none';
     });
-    return fieldWrapper;
 
-
+    return crossField;
   }
-
- 
 
   getBtnsGroup() {
     const buttonsGroup = document.createElement('div');
     buttonsGroup.setAttribute('class', 'btn-group group-pos');
     buttonsGroup.setAttribute('role', 'group');
     buttonsGroup.setAttribute('aris-label', 'Basic outlined example');
-    
+
     return buttonsGroup;
   }
 
