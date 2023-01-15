@@ -6,20 +6,47 @@ class FormConstructor {
     this.cakeFillings = cakeFillings;
   }
 
-
-
   renderForm() {
 
     this.formElement = document.createElement('form');
-
+    this.formElement.innerHTML = `
+    <button class="calc-total-price btn btn-outline-warning">Calculate Cake's Price</button>
+    <div class="total-price"></div>
+    <div class="invalid-tooltip">
+        Please choose a your option.
+      </div>
+    `    
     this.createBtnsGroup();
-
     this.formElement.append(this.btnsGroup);
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
+    this.getTotalCakePrice();
 
     return this.formElement;
+  }
+
+  getTotalCakePrice() {
+    const totalPriceBtn = this.formElement.querySelector('.calc-total-price');
+
+    totalPriceBtn.addEventListener('click', (e) => {
+      if (this.formElement.reportValidity()){
+        e.preventDefault();
+        let result = 0;
+        const allSelectFields = document.querySelectorAll('select');
+        allSelectFields.forEach(field => {
+            result += +field.value;
+  
+          return result;
+        })
+        document.querySelector('.total-price').innerHTML = result;
+
+      } else {
+        console.log('error')
+      }
+      
+  
+    });
   }
 
   appendSpongeToForm() {
@@ -71,10 +98,11 @@ class FormConstructor {
 
   getLayerSelector(options, title) {
     const fieldSelectElement = document.createElement('select');
-    fieldSelectElement.setAttribute('class', 'form-select');
+    fieldSelectElement.setAttribute('class', 'form-select form-control required');
+    fieldSelectElement.setAttribute('required', 'required');
 
     fieldSelectElement.innerHTML = `
-      <option selected>${title}</option>
+      <option selected value="">${title}</option>
     `;
 
     options.forEach((option) => {

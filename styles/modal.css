@@ -60,10 +60,18 @@ font-weight: 500;
 margin-bottom: 0.5rem;
 }
 
-.modal .btn {
-  display: block;
+.modal .btn-group {
+  display: flex;
+  justify-content: center;
   width: 280rem;
   margin: 0 auto;
+}
+
+.calc-total-price {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin-left: 2rem;
 }
 
 .show {
