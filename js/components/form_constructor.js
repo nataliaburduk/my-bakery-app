@@ -7,23 +7,30 @@ class FormConstructor {
   }
 
   renderForm() {
-
     this.formElement = document.createElement('form');
-    this.formElement.innerHTML = `
-    <button class="calc-total-price btn btn-outline-warning">Calculate Cake's Price</button>
-    <div class="total-price"></div>
-    <div class="invalid-tooltip">
-        Please choose a your option.
-      </div>
-    `    
+    this.fieldsContainer = document.createElement('div');
+    this.formElement.append(this.fieldsContainer);
+     
     this.createBtnsGroup();
     this.formElement.append(this.btnsGroup);
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
+    this.formElement.append(this.getTotalCakePriceBtn())
     this.getTotalCakePrice();
 
     return this.formElement;
+  }
+
+  getTotalCakePriceBtn() {
+    const totalPriceBtn = document.createElement('div');
+
+    totalPriceBtn.innerHTML = `
+    <button class="calc-total-price btn btn-outline-warning">Calculate Cake's Price</button>
+    <div class="total-price"></div>
+    `
+    return totalPriceBtn;
+
   }
 
   getTotalCakePrice() {
@@ -40,25 +47,20 @@ class FormConstructor {
           return result;
         })
         document.querySelector('.total-price').innerHTML = result;
-
-      } else {
-        console.log('error')
-      }
-      
-  
-    });
+      } 
+    })
   }
 
   appendSpongeToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
   }
 
   appendCreamToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
   }
 
   appendFillingToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
   }
 
   getButton(label) {
@@ -100,6 +102,7 @@ class FormConstructor {
     const fieldSelectElement = document.createElement('select');
     fieldSelectElement.setAttribute('class', 'form-select form-control required');
     fieldSelectElement.setAttribute('required', 'required');
+    fieldSelectElement.setAttribute('name', 'layer[]');
 
     fieldSelectElement.innerHTML = `
       <option selected value="">${title}</option>
