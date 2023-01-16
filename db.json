@@ -52,43 +52,43 @@
   "cake-sponges": [
     {
       "name": "Vanilla Sponge", 
-      "id": 1 
+      "price": 5 
     },
     {
       "name": "Chocolate Spronge", 
-      "id": 2 
+      "price": 5
     },
     { 
       "name": "Meringue", 
-      "id": 3 
+      "price": 10 
     }
   ],
   "cake-creams": [
     { 
       "name": "Vanilla Cream", 
-      "id": 1 
+      "price": 10 
     },
     { 
       "name": "Chocolate Cream", 
-      "id": 2 
+      "price": 15
     },
     { 
       "name": "Caramel Cream", 
-      "id": 3 
+      "price": 15 
     }
   ],
   "cake-fillings": [
     { 
       "name": "Berry Jam", 
-      "id": 1 
+      "price": 10 
     },
     { 
       "name": "Caramel & Nuts", 
-      "id": 2 
+      "price": 15 
     },
     { 
       "name": "Chocolate Ganache", 
-      "id": 3 
+      "price": 15 
     }
   ]
 }

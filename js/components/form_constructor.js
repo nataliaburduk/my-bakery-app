@@ -6,32 +6,62 @@ class FormConstructor {
     this.cakeFillings = cakeFillings;
   }
 
-
-
   renderForm() {
-
     this.formElement = document.createElement('form');
-
+    this.fieldsContainer = document.createElement('div');
+    this.formElement.append(this.fieldsContainer);
+     
     this.createBtnsGroup();
-
     this.formElement.append(this.btnsGroup);
     this.appendSpongeToForm();
     this.appendCreamToForm();
     this.appendFillingToForm();
+    this.formElement.append(this.getTotalCakePriceBtn())
+    this.getTotalCakePrice();
 
     return this.formElement;
   }
 
+  getTotalCakePriceBtn() {
+    const totalPriceBtn = document.createElement('div');
+    totalPriceBtn.setAttribute('class', 'calc-total-price');
+
+    totalPriceBtn.innerHTML = `
+    <button class="btn btn-outline-warning">Calculate Cake's Price</button>
+    <div class="total-price"></div>
+    `
+    return totalPriceBtn;
+
+  }
+
+  getTotalCakePrice() {
+    const totalPriceBtn = this.formElement.querySelector('.calc-total-price');
+
+    totalPriceBtn.addEventListener('click', (e) => {
+      if (this.formElement.reportValidity()){
+        e.preventDefault();
+        let result = 0;
+        const allSelectFields = document.querySelectorAll('select');
+        allSelectFields.forEach(field => {
+            result += +field.value;
+  
+          return result;
+        })
+        document.querySelector('.total-price').innerHTML = result + '$';
+      }
+    })
+  }
+
   appendSpongeToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeSponges, 'Cake Sponge'));
   }
 
   appendCreamToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeCreams, 'Cake Cream'));
   }
 
   appendFillingToForm() {
-    this.formElement.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
+    this.fieldsContainer.append(this.getLayerSelector(this.cakeFillings, 'Cake Filling'));
   }
 
   getButton(label) {
@@ -71,16 +101,18 @@ class FormConstructor {
 
   getLayerSelector(options, title) {
     const fieldSelectElement = document.createElement('select');
-    fieldSelectElement.setAttribute('class', 'form-select');
+    fieldSelectElement.setAttribute('class', 'form-select form-control required');
+    fieldSelectElement.setAttribute('required', 'required');
+    fieldSelectElement.setAttribute('name', 'layer[]');
 
     fieldSelectElement.innerHTML = `
-      <option selected>${title}</option>
+      <option selected value="">${title}</option>
     `;
 
     options.forEach((option) => {
       const optionTag = document.createElement('option');
       optionTag.innerHTML = option.name;
-      optionTag.setAttribute('value', option.id);
+      optionTag.setAttribute('value', +option.price);
       optionTag.setAttribute('class', 'form-select');
 
       fieldSelectElement.append(optionTag);
@@ -105,7 +137,7 @@ class FormConstructor {
 
   getCrossFieldBtn(selector) {
     const crossField = document.createElement('button');
-    crossField.classList.add('hide-cross-field');
+    crossField.classList.add('hide-cross-field', 'btn');
     crossField.setAttribute('type', 'button');
     crossField.setAttribute('aria-label', 'Close');
     crossField.innerHTML = '<i class="fa fa-times"></i>';
@@ -121,7 +153,8 @@ class FormConstructor {
     })
 
     crossField.addEventListener('click', () => {
-      selector.style.display = 'none';
+      selector.remove();
+      this.getTotalCakePrice();
     });
 
     return crossField;

@@ -23,16 +23,15 @@ class ModalWindow {
                 <div class="modal__subtitle">${this.modalSubtitle}</div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-primary">Give me a Call </button>
-
-            </div>
-                  
           </div>
       </div>
     `;
 
+    
     this.container.append(this.modal);
     this.modal.querySelector('.modal-header').append(this.closeModalIcon);
+    // this.modal.querySelector('.total-price').innerHTML = this.result;
+
     this.openModalWindowTrigger();
     this.closeModalByCross();
     this.closeModalWindow();

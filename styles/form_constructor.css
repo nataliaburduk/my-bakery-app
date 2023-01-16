@@ -28,7 +28,7 @@
 
 .field-close {
   display: block;
-  left: -3rem;
+  left: -3.75rem;
   position: relative;
   font-size: 14px;
   color: #000;
@@ -37,7 +37,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  width: 0px;
+  width: 10px;
 }
 
 .field-close:focus {
@@ -45,8 +45,24 @@
   outline: none;
 }
 
-
 .group-pos {
   max-width: -webkit-fill-available;
+}
+
+.calc-total-price {
+  margin: 1rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+/* .total-price::after {
+  font-size: 22px;
+  content: '\$';
+} */
+
+.total-price {
+  font-size: 22px;
+  content-visibility: auto;
 }
 
