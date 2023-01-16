@@ -1,7 +1,7 @@
 .form-select {
   appearance: none;
   display: block;
-  margin: 20px auto;
+  margin: 20px 20px;
   width: 280px;
   height: 40px;
   background: #FFFFFF;
@@ -13,6 +13,36 @@
   padding: 0 0;
   outline: none;
   cursor: pointer;
+}
+
+.field-wrapper {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: 0rem 3rem;
+}
+
+.hide-cross-field {
+  display: none;
+}
+
+.field-close {
+  display: block;
+  left: -3rem;
+  position: relative;
+  font-size: 14px;
+  color: #000;
+  opacity: 0.5;
+  font-weight: 100;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 0px;
+}
+
+.field-close:focus {
+  border: none;
+  outline: none;
 }
 
 
