@@ -24,9 +24,10 @@ class FormConstructor {
 
   getTotalCakePriceBtn() {
     const totalPriceBtn = document.createElement('div');
+    totalPriceBtn.setAttribute('class', 'calc-total-price');
 
     totalPriceBtn.innerHTML = `
-    <button class="calc-total-price btn btn-outline-warning">Calculate Cake's Price</button>
+    <button class="btn btn-outline-warning">Calculate Cake's Price</button>
     <div class="total-price"></div>
     `
     return totalPriceBtn;
@@ -46,8 +47,8 @@ class FormConstructor {
   
           return result;
         })
-        document.querySelector('.total-price').innerHTML = result;
-      } 
+        document.querySelector('.total-price').innerHTML = result + '$';
+      }
     })
   }
 
@@ -136,7 +137,7 @@ class FormConstructor {
 
   getCrossFieldBtn(selector) {
     const crossField = document.createElement('button');
-    crossField.classList.add('hide-cross-field');
+    crossField.classList.add('hide-cross-field', 'btn');
     crossField.setAttribute('type', 'button');
     crossField.setAttribute('aria-label', 'Close');
     crossField.innerHTML = '<i class="fa fa-times"></i>';
@@ -152,7 +153,8 @@ class FormConstructor {
     })
 
     crossField.addEventListener('click', () => {
-      selector.style.display = 'none';
+      selector.remove();
+      this.getTotalCakePrice();
     });
 
     return crossField;

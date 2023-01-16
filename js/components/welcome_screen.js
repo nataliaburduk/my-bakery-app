@@ -8,7 +8,6 @@ function welcomeScreen(callback) {
         mainContent = document.querySelector('#main-content'),
         welcomeDataAttr = document.querySelector('#welcome-screen');
   
-  const timeOutId = sliderShow(welcomeDataAttr, slides, 2000);
 
   function showCardsAfterSlides(){
     welcomeContainer.setAttribute('hidden', true);
@@ -17,12 +16,20 @@ function welcomeScreen(callback) {
     mainContent.classList.remove('just-for-hidding');
   }
 
-  welcomeBtn.addEventListener('click', () => {
-    welcomeDataAttr.setAttribute('data-animate', false);
-    clearTimeout(timeOutId);
+  if (sessionStorage.getItem('welcome-btn') ==='clicked') {
     showCardsAfterSlides();
     callback();
-  }, {once: true});
+  } else {
+    const timeOutId = sliderShow(welcomeDataAttr, slides, 2000);
+
+    welcomeBtn.addEventListener('click', () => {
+      sessionStorage.setItem('welcome-btn', 'clicked');
+      welcomeDataAttr.setAttribute('data-animate', false);
+      clearTimeout(timeOutId);
+      showCardsAfterSlides();
+      callback();
+    })
+  }
 }
 
 export default welcomeScreen;
